@@ -1,0 +1,3 @@
+aws s3api create-bucket --bucket remote-optum
+
+aws s3api put-object --bucket remote-optum --key backend/
