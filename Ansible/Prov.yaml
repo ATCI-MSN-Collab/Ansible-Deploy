@@ -43,7 +43,7 @@
 
     - name: Deploy NTP Agent on RHEL
       template:
-        src: template/RHEL_conf
+        src: RHEL_conf.j2
         dest: /etc/chrony.conf
         backup: yes
       when: ansible_distribution == "RHEL"
@@ -52,7 +52,7 @@
 
     - name: Deploy NTP Agent on Ubuntu
       template:
-        src: template/Ubuntu_conf
+        src: Ubuntu_conf.j2
         dest: /etc/ntpsec/ntp.conf
         backup: yes
       when: ansible_distribution == "Ubuntu"
