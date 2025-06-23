@@ -1,14 +1,14 @@
 all:
   hosts:
     web01:
-      ansible_host: 172.31.11.167
+      ansible_host: 172.31.89.143
     web02:
-      ansible_host: 172.31.5.9
+      ansible_host: 172.31.95.190
     web03:
-      ansible_host: 172.31.7.109
+      ansible_host: 172.31.81.166
       ansible_user: ubuntu
     db01:
-      ansible_host: 172.31.15.121
+      ansible_host: 172.31.94.19
 
   children:
     webserver:
