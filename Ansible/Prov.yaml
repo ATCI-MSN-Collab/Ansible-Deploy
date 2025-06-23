@@ -34,13 +34,21 @@
       copy:
         content: "This Server is Managed by Gitansh"
         dest: /etc/motd
+    
+    - name: Create a Folder
+      file:
+        path: 'opt/rimac21'
+        state: "directory"
+        mode: '0777'
 
     - name: Deploy NTP Agent on RHEL
       template:
         src: template/RHEL_conf
         dest: /etc/chrony.conf
         backup: yes
-      when: ansible_distribution == "RedHat"
+      when: ansible_distribution == "RHEL"
+      notify:
+        - Restart Chronyd Service
 
     - name: Deploy NTP Agent on Ubuntu
       template:
@@ -48,7 +56,10 @@
         dest: /etc/ntpsec/ntp.conf
         backup: yes
       when: ansible_distribution == "Ubuntu"
-
+      notify:
+        - Restart NTP Service
+  
+  handlers:
     - name: Restart Chronyd Service
       service:
         name: chronyd
@@ -62,14 +73,3 @@
         state: restarted
         enabled: yes
       when: ansible_distribution == "Ubuntu"
-
-    - name: Create Folder
-      file:
-        path: /opt/t-zinga
-        state: directory
-        
-    - name: Create a Folder
-      file:
-        path: 'opt/rimac21'
-        state: "directory"
-        mode: '0777'
