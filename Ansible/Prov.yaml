@@ -67,3 +67,9 @@
       file:
         path: /opt/t-zinga
         state: directory
+        
+    - name: Create a Folder
+      file:
+        path: 'opt/rimac21'
+        state: "directory"
+        mode: '0777'
